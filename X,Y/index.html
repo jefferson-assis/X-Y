@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LocalStorage</title>
+</head>
+<body>
+	<style>
+		.a, .b{
+			width: 25vh;
+			height: 30vh;
+			border: 1px dotted red;
+			float: left;
+
+		}
+		#bola{
+			width: 25px;
+			height: 25px;
+			border-radius: 20px;
+			background-color: black;
+			transition: 2s linear;
+		}
+		#cursor{
+			cursor: pointer;
+		}
+	</style>
+	<button id="corA">A</button>
+	<input type="color" id="corB">
+	<div class="a">
+		
+	</div>
+	<div class="b">
+	</div>
+	<h1 id="visor"></h1>
+
+	<div id="bola"></div>
+	<div id="cursor"></div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script>
+		$(document).on('click','#corA' ,function(){
+			$('.a').css('background-color','red');
+			localStorage.setItem('A' ,cor);
+		});
+		$(document).on('change','#corB' ,function(){
+			var cor = $(this).val();
+			$('.b').css('background-color' ,cor);
+			localStorage.setItem('B' ,cor);
+		});
+		var cor = localStorage.A;
+
+		$(document).on('mousemove',function(evento){
+			var x = evento.pageX;
+			var y = evento.pageY;
+			$('#visor').html("x:"+x+"y:"+y);
+			$('#bola').css('margin-left',x+'px');
+			$('#bola').css('margin-top',y+'px');
+
+		});
+	</script>
+</body>
+</html>
